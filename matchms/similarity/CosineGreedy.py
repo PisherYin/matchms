@@ -90,7 +90,7 @@ class CosineGreedy(BaseSimilarity):
                                                 intensity_power=self.intensity_power)
             if matching_pairs is None:
                 return None
-            matching_pairs = matching_pairs[np.argsort(matching_pairs[:, 2])[::-1], :]
+            matching_pairs = matching_pairs[np.argsort(matching_pairs[:, 2])[::-1], :] #读取所有的强度乘积，并按降序排列 只有乘积值的列表
             return matching_pairs
 
         spec1 = reference.peaks.to_numpy
