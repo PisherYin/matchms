@@ -96,17 +96,18 @@ def score_best_matches(matching_pairs: np.ndarray, spec1: np.ndarray,
     used1 = set()
     used2 = set()
     for i in range(matching_pairs.shape[0]):
+        
         if not matching_pairs[i, 0] in used1 and not matching_pairs[i, 1] in used2:
-            score += matching_pairs[i, 2]
+            score += matching_pairs[i, 2]    #计算强度乘积的和
             used1.add(matching_pairs[i, 0])  # Every peak can only be paired once
             used2.add(matching_pairs[i, 1])  # Every peak can only be paired once
             used_matches += 1
 
     # Normalize score:
-    spec1_power = spec1[:, 0] ** mz_power * spec1[:, 1] ** intensity_power
-    spec2_power = spec2[:, 0] ** mz_power * spec2[:, 1] ** intensity_power
+    spec1_power = spec1[:, 0] ** mz_power * spec1[:, 1] ** intensity_power  #强度值
+    spec2_power = spec2[:, 0] ** mz_power * spec2[:, 1] ** intensity_power  #强度值
 
-    score = score/(np.sum(spec1_power ** 2) ** 0.5 * np.sum(spec2_power ** 2) ** 0.5)
+    score = score/(np.sum(spec1_power ** 2) ** 0.5 * np.sum(spec2_power ** 2) ** 0.5)  #强度乘积的和除以（强度1的每个元素平方求和后开方，乘以强度2平方求和后的开方）
     return score, used_matches
 
 
