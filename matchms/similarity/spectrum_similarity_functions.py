@@ -107,7 +107,7 @@ def score_best_matches(matching_pairs: np.ndarray, spec1: np.ndarray,
     spec1_power = spec1[:, 0] ** mz_power * spec1[:, 1] ** intensity_power  #强度值
     spec2_power = spec2[:, 0] ** mz_power * spec2[:, 1] ** intensity_power  #强度值
 
-    score = score/(np.sum(spec1_power ** 2) ** 0.5 * np.sum(spec2_power ** 2) ** 0.5)  #强度乘积的和除以（强度1的每个元素平方求和后开方，乘以强度2平方求和后的开方）
+    score = score/(np.sum(spec1_power ** 2) ** 0.5 * np.sum(spec2_power ** 2) ** 0.5)  #匹配上的强度乘积的和除以（强度1的每个元素平方求和后开方，乘以强度2平方求和后的开方）
     return score, used_matches
 
 
